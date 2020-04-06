@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -15,5 +17,16 @@ class NetworkModule {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder().addInterceptor(interceptor).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideGamesApi(client: OkHttpClient): GamesApi {
+        val retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(NetworkConfig.API_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        return retrofit.create(GamesApi::class.java)
     }
 }
