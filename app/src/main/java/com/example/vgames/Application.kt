@@ -1,10 +1,7 @@
 package com.example.vgames
 
-class Application : Application() {
-    lateinit var injector: ApplicationComponent
+import com.example.vgames.ui.UIModule
 
-    override fun onCreate() {
-        super.onCreate()
-        injector = DaggerApplicationComponent.builder().uIModule(UIModule(this)).build()
-    }
+class Application {
+    lateinit var injector: ApplicationComponent
 }

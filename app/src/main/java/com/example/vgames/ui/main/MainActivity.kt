@@ -1,7 +1,7 @@
 package com.example.vgames.ui.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.support.v7.app.AppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainScreen {

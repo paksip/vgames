@@ -2,6 +2,8 @@ package com.example.vgames.ui
 
 import android.content.Context
 import com.example.vgames.interactor.games.GamesInteractor
+import com.example.vgames.ui.detail.DetailPresenter
+import com.example.vgames.ui.main.MainPresenter
 import dagger.Module
 import dagger.Provides
 import java.util.concurrent.Executor
