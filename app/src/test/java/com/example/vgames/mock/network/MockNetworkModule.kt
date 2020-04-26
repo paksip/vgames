@@ -1,5 +1,6 @@
-package com.example.vgames.mock
+package com.example.vgames.mock.network
 
+import com.example.vgames.mock.network.MockGamesApi
 import com.example.vgames.network.GamesApi
 import dagger.Module
 import dagger.Provides
@@ -19,5 +20,6 @@ class MockNetworkModule {
 
     @Provides
     @Singleton
-    fun provideArtistsApi(): GamesApi = MockGamesApi()
+    fun provideArtistsApi(): GamesApi =
+        MockGamesApi()
 }

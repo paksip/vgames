@@ -1,7 +1,7 @@
 package com.example.vgames
 
 import com.example.vgames.interactor.InteractorModule
-import com.example.vgames.mock.MockNetworkModule
+import com.example.vgames.mock.network.MockNetworkModule
 import com.example.vgames.model.db.RoomModule
 import com.example.vgames.test.GamesTest
 import com.example.vgames.test.MainTest

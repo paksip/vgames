@@ -1,4 +1,4 @@
-package com.example.vgames.mock
+package com.example.vgames.mock.network
 
 import com.example.vgames.model.dto.ResponseList
 import com.example.vgames.model.dto.ResponseOne
