@@ -8,6 +8,6 @@ class VGamesApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        injector = DaggerApplicationComponent.builder().uIModule(UIModule(this)).build()
+        injector = DaggerVGamesApplicationComponent.builder().uIModule(UIModule(this)).build()
     }
 }
