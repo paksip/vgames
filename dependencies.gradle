@@ -56,7 +56,8 @@ ext {
     daggerDependencies = [
             dagger    : "com.google.dagger:dagger:$dagger_version",
             compiler  : "com.google.dagger:dagger-compiler:$dagger_version",
-            annotation: 'javax.annotation:jsr250-api:1.0'   // Required for @Generated annotation
+            annotation: 'javax.annotation:jsr250-api:1.0',   // Required for @Generated annotation
+            testApt: "com.google.dagger:dagger-compiler:$dagger_version"
     ]
 
     unitTestDependencies = [

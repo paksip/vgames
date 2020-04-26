@@ -1,7 +1,7 @@
 package com.example.vgames.network
 
-import com.example.vgames.model.ResponseList
-import com.example.vgames.model.ResponseOne
+import com.example.vgames.model.dto.ResponseList
+import com.example.vgames.model.dto.ResponseOne
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

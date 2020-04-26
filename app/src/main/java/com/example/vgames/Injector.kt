@@ -2,7 +2,7 @@ package com.example.vgames
 
 import android.app.Activity
 
-val Activity.injector: ApplicationComponent
+val Activity.injector: VGamesApplicationComponent
     get() {
-        return (this.applicationContext as Application).injector
+        return (this.applicationContext as VGamesApplication).injector
     }

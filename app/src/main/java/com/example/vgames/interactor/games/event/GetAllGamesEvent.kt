@@ -1,6 +1,6 @@
 package com.example.vgames.interactor.games.event
 
-import com.example.vgames.model.Game
+import com.example.vgames.model.dto.Game
 
 data class GetAllGamesEvent(
     var code: Int = 0,

@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [UIModule::class, NetworkModule::class, InteractorModule::class])
-interface ApplicationComponent {
+interface VGamesApplicationComponent {
     fun inject(gameListActivity: MainActivity)
     fun inject(gameDetailActivity: DetailActivity)
 }
