@@ -22,7 +22,7 @@ interface GamesApi {
         @Path("gameId") gameId: Long?,
         @Query("api_key") apiKey: String?,
         @Query("format") format: String?
-    ): Call<ResponseOne?>?
+    ): Call<ResponseOne>
 
     /**
      * Get all video games
@@ -35,5 +35,5 @@ interface GamesApi {
     fun getAllGames(
         @Query("api_key") apiKey: String?,
         @Query("format") format: String?
-    ): Call<List<ResponseList?>?>?
+    ): Call<ResponseList>
 }
