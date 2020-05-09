@@ -31,7 +31,7 @@ class GamesTest {
     }
 
     @Test
-    fun test() {
+    fun testGameDetail() {
         detailsPresenter.load(1)
 
         val game = argumentCaptor<Game>()
