@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">VGames</string>
-    <string name="games">Games</string>
     <string name="empty_list_view_title_text">No data</string>
 </resources>

@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), MainScreen, GameListAdapter.Listener {
         injector.inject(this)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.title = getString(R.string.games)
+        supportActionBar?.title = getString(R.string.app_name)
 
         setupRecyclerView()
         setUpRefreshView()

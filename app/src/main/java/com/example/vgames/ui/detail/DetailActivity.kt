@@ -80,8 +80,8 @@ class DetailActivity : AppCompatActivity(), DetailScreen {
         if (game != null) {
             Glide.with(this).load(game.image!!.smallUrl!!).into(gameImage)
             name.text = game.name
-            originalReleaseDateText.text = game.originalReleaseDate.toString()
-            descriptionText.text = Html.fromHtml(game.description)
+            originalReleaseDateText.text = game.originalReleaseDate ?: ""
+            descriptionText.text = Html.fromHtml(game.description ?: "")
         }
     }
 }
