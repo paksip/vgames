@@ -37,6 +37,12 @@ class GamesTest {
         val game = argumentCaptor<Game>()
         Mockito.verify(detailScreen).showGame(game.capture())
         assert(game.value.description == "gamedescription")
+        assert(game.value.deck == "gamedeck")
+        assert(game.value.id == 1L)
+        assert(game.value.image!!.smallUrl == "imageurl")
+        assert(game.value.name == "game")
+        assert(game.value.originalReleaseDate == "date")
+        assert(game.value.platforms!!.stream().findAny().get().name == "Playstation")
     }
 
     @After

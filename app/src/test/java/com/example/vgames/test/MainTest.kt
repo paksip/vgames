@@ -35,6 +35,8 @@ class MainTest {
         val list = argumentCaptor<MutableList<Game>>()
         verify(mainScreen).showGames(list.capture())
         assert(list.value.size > 0)
+        assert(list.value.stream().findAny().get().name === "game")
+        assert(list.value.stream().findAny().get().id!! == 1L)
     }
 
     @After
