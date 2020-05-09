@@ -1,39 +1,52 @@
 package com.example.vgames.test
 
+import com.example.vgames.model.dto.Game
 import com.example.vgames.testInjector
+import com.example.vgames.ui.detail.DetailPresenter
+import com.example.vgames.ui.detail.DetailScreen
 import com.example.vgames.ui.main.MainPresenter
 import com.example.vgames.ui.main.MainScreen
+import com.example.vgames.utils.argumentCaptor
 import com.example.vgames.utils.mock
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mockito
 import org.robolectric.RobolectricTestRunner
 import javax.inject.Inject
 
 @RunWith(RobolectricTestRunner::class)
 class GamesTest {
     @Inject
-    lateinit var mainPresenter: MainPresenter
-
-    private lateinit var mainScreen: MainScreen
-    private lateinit var query: String
+    lateinit var detailsPresenter: DetailPresenter
+    private lateinit var detailScreen: DetailScreen
 
     @Before
     @Throws(Exception::class)
     fun setup() {
         testInjector.inject(this)
-        mainScreen = mock()
-        mainPresenter.attachScreen(mainScreen)
+        detailScreen = mock()
+        detailsPresenter.attachScreen(detailScreen)
     }
 
     @Test
-    fun test() {
-        // TODO: IMPLEMENT...
+    fun testGameDetail() {
+        detailsPresenter.load(1)
+
+        val game = argumentCaptor<Game>()
+        Mockito.verify(detailScreen).showGame(game.capture())
+        assert(game.value.description == "gamedescription")
+        assert(game.value.deck == "gamedeck")
+        assert(game.value.id == 1L)
+        assert(game.value.image!!.smallUrl == "imageurl")
+        assert(game.value.name == "game")
+        assert(game.value.originalReleaseDate == "date")
+        assert(game.value.platforms!!.stream().findAny().get().name == "Playstation")
     }
 
     @After
     fun tearDown() {
-        mainPresenter.detachScreen()
+        detailsPresenter.detachScreen()
     }
 }
