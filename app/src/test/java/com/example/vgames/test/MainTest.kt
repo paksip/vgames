@@ -1,8 +1,10 @@
 package com.example.vgames.test
 
+import com.example.vgames.model.dto.Game
 import com.example.vgames.testInjector
 import com.example.vgames.ui.main.MainPresenter
 import com.example.vgames.ui.main.MainScreen
+import com.example.vgames.utils.argumentCaptor
 import com.example.vgames.utils.mock
 import org.junit.After
 import org.junit.Before
@@ -28,8 +30,11 @@ class MainTest {
 
     @Test
     fun testListGames() {
-        mainPresenter.showGames()
-        verify(mainScreen).showGames()
+        mainPresenter.load()
+
+        val list = argumentCaptor<MutableList<Game>>()
+        verify(mainScreen).showGames(list.capture())
+        assert(list.value.size > 0)
     }
 
     @After

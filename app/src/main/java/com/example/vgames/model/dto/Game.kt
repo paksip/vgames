@@ -5,7 +5,7 @@ import java.time.LocalDate
 
 data class Game(
     @SerializedName("id")
-    var id: String? = null,
+    var id: Long? = null,
     @SerializedName("name")
     var name: String? = null,
     @SerializedName("image")
@@ -15,7 +15,7 @@ data class Game(
     @SerializedName("description")
     var description: String? = null,
     @SerializedName("original_release_date")
-    var originalReleaseDate: LocalDate? = null,
+    var originalReleaseDate: String? = null,
     @SerializedName("platforms")
     var platforms: List<Platform>? = null
 )

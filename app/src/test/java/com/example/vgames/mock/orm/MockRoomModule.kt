@@ -24,5 +24,5 @@ class MockRoomModule {
 
     @Provides
     @Singleton
-    fun provideCharacterDao(mockDatabase: MockDatabase): MockDao = mockDatabase.mockGameDao()
+    fun provideGameDao(mockDatabase: MockDatabase): MockDao = mockDatabase.mockGameDao()
 }
