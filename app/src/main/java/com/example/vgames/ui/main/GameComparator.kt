@@ -1,6 +1,6 @@
 package com.example.vgames.ui.main
 
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 import com.example.vgames.model.dto.Game
 
 object GameComparator : DiffUtil.ItemCallback<Game>() {

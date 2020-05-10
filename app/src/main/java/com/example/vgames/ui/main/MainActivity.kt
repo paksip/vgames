@@ -1,10 +1,13 @@
 package com.example.vgames.ui.main
 
+import android.R.id
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import com.crashlytics.android.Crashlytics
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.vgames.R
 import com.example.vgames.injector
 import com.example.vgames.model.dto.Game
@@ -13,16 +16,17 @@ import com.example.vgames.ui.detail.DetailActivity.Companion.KEY_GAME_ID
 import com.example.vgames.ui.utils.hide
 import com.example.vgames.ui.utils.show
 import com.google.firebase.analytics.FirebaseAnalytics
-import io.fabric.sdk.android.Fabric
+import kotlinx.android.synthetic.main.activity_item_detail.*
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list.*
 import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity(), MainScreen, GameListAdapter.Listener {
 
     private lateinit var listAdapter: GameListAdapter
 
-//    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     @Inject
     lateinit var mainPresenter: MainPresenter
@@ -33,32 +37,25 @@ class MainActivity : AppCompatActivity(), MainScreen, GameListAdapter.Listener {
 
         injector.inject(this)
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar as Toolbar?)
         supportActionBar?.title = getString(R.string.app_name)
 
         setupRecyclerView()
         setUpRefreshView()
 
-//        Fabric.with(this, Crashlytics())
-//        testCrashButton.setOnClickListener {
-//            forceCrash()
-//        }
+        // FABRIC - CRASHLYTICS
+        crashButton.setOnClickListener {
+            throw RuntimeException("Test Crash") // Force a crash
+        }
 
-//        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-//        logAnalyticsEvent()
+        // ANALYTICS
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "ITEM_ID")
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "ITEM_NAME")
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image")
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
     }
-
-//    private fun logAnalyticsEvent() {
-//        val bundle = Bundle()
-//        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "FireBase")
-//        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "FireBase")
-//        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image")
-//        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
-//    }
-
-//    fun forceCrash() {
-//        throw  RuntimeException("This is a test crash")
-//    }
 
     override fun onResume() {
         super.onResume()
@@ -84,11 +81,11 @@ class MainActivity : AppCompatActivity(), MainScreen, GameListAdapter.Listener {
     private fun setupRecyclerView() {
         listAdapter = GameListAdapter(this)
         listAdapter.listener = this
-        gameList?.adapter = listAdapter
+        (gameList as RecyclerView).adapter = listAdapter
     }
 
     private fun setUpRefreshView() {
-        swipeRefreshLayoutGames?.setOnRefreshListener {
+        (swipeRefreshLayoutGames as SwipeRefreshLayout).setOnRefreshListener {
             mainPresenter.load()
         }
     }
@@ -100,7 +97,7 @@ class MainActivity : AppCompatActivity(), MainScreen, GameListAdapter.Listener {
     }
 
     override fun showGames(games: List<Game>?) {
-        swipeRefreshLayoutGames?.isRefreshing = false
+        (swipeRefreshLayoutGames as SwipeRefreshLayout).isRefreshing = false
 
         if (games?.isEmpty() == true) {
             gameList?.hide()
@@ -114,7 +111,7 @@ class MainActivity : AppCompatActivity(), MainScreen, GameListAdapter.Listener {
     }
 
     override fun showNetworkError(message: String) {
-        swipeRefreshLayoutGames?.isRefreshing = false
+        (swipeRefreshLayoutGames as SwipeRefreshLayout).isRefreshing = false
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
