@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "183827835252",
+    "firebase_url": "https://vgames-425e7.firebaseio.com",
+    "project_id": "vgames-425e7",
+    "storage_bucket": "vgames-425e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183827835252:android:caa60546799b6037ac6421",
+        "android_client_info": {
+          "package_name": "com.example.vgames"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183827835252-h60eavm886mnrigc32s8hqlscuvrs7la.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR0yfbGN-438tShliMiZO6mWhj3x96R0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183827835252-h60eavm886mnrigc32s8hqlscuvrs7la.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

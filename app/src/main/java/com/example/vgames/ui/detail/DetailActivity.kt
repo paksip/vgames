@@ -2,10 +2,11 @@ package com.example.vgames.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.Html
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.example.vgames.R
 import com.example.vgames.injector
@@ -30,7 +31,7 @@ class DetailActivity : AppCompatActivity(), DetailScreen {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_detail)
-        setSupportActionBar(detail_toolbar)
+        setSupportActionBar(detail_toolbar as Toolbar)
 
         injector.inject(this)
 

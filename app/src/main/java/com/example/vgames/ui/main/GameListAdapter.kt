@@ -1,17 +1,20 @@
 package com.example.vgames.ui.main
 
 import android.content.Context
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.widget.RecyclerView
+import android.os.Parcel
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vgames.R
 import com.example.vgames.model.dto.Game
 import kotlinx.android.synthetic.main.row_game.view.*
 
-class GameListAdapter(val context: Context) : ListAdapter<Game, GameListAdapter.GameViewHolder>(GameComparator) {
+class GameListAdapter(val context: Context) : ListAdapter<Game, GameListAdapter.GameViewHolder>(GameComparator),
+    Parcelable {
 
     var listener: Listener? = null
 
@@ -48,6 +51,24 @@ class GameListAdapter(val context: Context) : ListAdapter<Game, GameListAdapter.
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         holder.bind(getItem(position))
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<GameListAdapter> {
+        override fun createFromParcel(parcel: Parcel): GameListAdapter {
+            return GameListAdapter(parcel as Context)
+        }
+
+        override fun newArray(size: Int): Array<GameListAdapter?> {
+            return arrayOfNulls(size)
+        }
     }
 
 }
